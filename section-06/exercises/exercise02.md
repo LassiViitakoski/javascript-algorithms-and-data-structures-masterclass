@@ -8,51 +8,51 @@
   - Time: O(n log n)
   - Space: O(1)
   - Input / Output:
-    - ```javascript
-        areThereDuplicates(1, 2, 3); // false
-        areThereDuplicates(1, 2, 2); // true
-        areThereDuplicates('a', 'b', 'c', 'a'); // true
-      ```
+```javascript
+areThereDuplicates(1, 2, 3); // false
+areThereDuplicates(1, 2, 2); // true
+areThereDuplicates('a', 'b', 'c', 'a'); // true
+```
 
 - My own solution with frequency counter pattern
 ```javascript
-  function areThereDuplicates(...args) {
-    let frequencyCounter = {};
+function areThereDuplicates(...args) {
+  let frequencyCounter = {};
 
-    for (let val of args) {
-      if (frequencyCounter[val]) return true;
+  for (let val of args) {
+    if (frequencyCounter[val]) return true;
 
-      frequencyCounter[val] = true;
-    }
-
-    return false;
+    frequencyCounter[val] = true;
   }
+
+  return false;
+}
 ```
 
 - My own solution with pointers
 ```javascript
-  function areThereDuplicates(...args) {
-    args.sort();
+function areThereDuplicates(...args) {
+  args.sort();
 
-    let left = 0;
-    let next = 1;
+  let left = 0;
+  let next = 1;
 
-    while (next < args.length) {
-      if (args[left] === args[next]) {
-        return true;
-      }
-
-      left++;
-      next++;
+  while (next < args.length) {
+    if (args[left] === args[next]) {
+      return true;
     }
 
-    return false;
+    left++;
+    next++;
   }
+
+  return false;
+}
 ```
 
 - One line solution by using set
 ```javascript
-  function areThereDuplicates(...args) {
-    return new Set(arguments).size !== arguments.length;
-  }
+function areThereDuplicates(...args) {
+  return new Set(arguments).size !== arguments.length;
+}
 ```

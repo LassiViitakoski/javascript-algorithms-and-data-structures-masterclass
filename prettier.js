@@ -1,13 +1,5 @@
-function collectOddValues(arr) {
-  let newArr = [];
+function fib(num) {
+  if (num <= 2) return 1;
 
-  if (arr.length === 0) return newArr;
-
-  if (arr[0] & (2 !== 0)) {
-    newArr.push(arr[0]);
-  }
-
-  newArr = newArr.concat(collectOddValues(arr.slice(1)));
-
-  return newArr;
+  return fib(num - 1) + fib(num - 2);
 }

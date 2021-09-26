@@ -4,40 +4,40 @@
 - Your Solution MUST have the following complexities
   - Time: O(n)
   - Input / Output:
-    - ```javascript
-        sameFrequency(182, 281) // true
-        sameFrequency(34, 14) // false
-        sameFrequency(3589578, 5879385) // true
-        sameFrequency(222, 22) // false
-      ```
+```javascript
+sameFrequency(182, 281); // true
+sameFrequency(34, 14); // false
+sameFrequency(3589578, 5879385); // true
+sameFrequency(222, 22); // false
+```
 
 - Solution
 
 ```javascript
-  function sameFrequency(first, second) {
-    first = first.toString();
-    second = second.toString();
+function sameFrequency(first, second) {
+  first = first.toString();
+  second = second.toString();
 
-    if (first.length !== second.length) return false;
+  if (first.length !== second.length) return false;
 
-    frequencyCounter = toFrequencyCounter(first);
+  frequencyCounter = toFrequencyCounter(first);
 
-    for (let letter of second) {
-      if (!frequencyCounter[letter]) return false;
+  for (let letter of second) {
+    if (!frequencyCounter[letter]) return false;
 
-      frequencyCounter[letter]--;
-    }
-
-    return true;
+    frequencyCounter[letter]--;
   }
 
-  function toFrequencyCounter(data) {
-    let frequencyCounter = {};
+  return true;
+}
 
-    for (let val of data) {
-      frequencyCounter[val] = (frequencyCounter[val] || 0) + 1;
-    }
+function toFrequencyCounter(data) {
+  let frequencyCounter = {};
 
-    return frequencyCounter;
+  for (let val of data) {
+    frequencyCounter[val] = (frequencyCounter[val] || 0) + 1;
   }
+
+  return frequencyCounter;
+}
 ```

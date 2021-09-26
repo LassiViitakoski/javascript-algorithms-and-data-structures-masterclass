@@ -7,26 +7,26 @@
 - Input / Output
 
 ```javascript
-  isSubsequence('hello', 'hello world') // true
-  isSubsequence('sing', 'string') // true
-  isSubsequence('abc', 'abracadabra') // true
-  isSubsequence('abc', 'acb') // false (order matters)
+isSubsequence('hello', 'hello world'); // true
+isSubsequence('sing', 'string'); // true
+isSubsequence('abc', 'abracadabra'); // true
+isSubsequence('abc', 'acb'); // false (order matters)
 ```
 
 - My Solution
 
 ```javascript
-  function isSubsequence(first, second) {
-    let firstPointer = 0;
-    let secondPointer = 0;
+function isSubsequence(first, second) {
+  let firstPointer = 0;
+  let secondPointer = 0;
 
-    while (secondPointer < second.length) {
-      if (first[firstPointer] === second[secondPointer]) firstPointer++;
-      if (firstPointer === first.length) return true;
+  while (secondPointer < second.length) {
+    if (first[firstPointer] === second[secondPointer]) firstPointer++;
+    if (firstPointer === first.length) return true;
 
-      secondPointer++;
-    }
-
-    return false;
+    secondPointer++;
   }
+
+  return false;
+}
 ```

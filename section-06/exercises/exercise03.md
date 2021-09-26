@@ -5,27 +5,28 @@
   - Time: O(n)
   - Space: O(1)
   - Input / Output
-  ```javascript
-    averagePair([1, 2, 3], 2.5) // true
-    averagePair([1, 3, 3, 5, 6, 7, 10, 12, 19], 8) // true
-    averagePair([-1, 0, 3, 4, 5, 6], 4.1) // false
-    averagePair([], 4) // false
-  ```
+
+```javascript
+averagePair([1, 2, 3], 2.5); // true
+averagePair([1, 3, 3, 5, 6, 7, 10, 12, 19], 8); // true
+averagePair([-1, 0, 3, 4, 5, 6], 4.1); // false
+averagePair([], 4); // false
+```
 
 - My Solution
 ```javascript
-  function averagePair(arr, num) {
-    let left = 0;
-    let right = arr.length - 1;
+function averagePair(arr, num) {
+  let left = 0;
+  let right = arr.length - 1;
 
-    while (left < right) {
-      let avg = (arr[left] + arr[right]) / 2;
+  while (left < right) {
+    let avg = (arr[left] + arr[right]) / 2;
 
-      if (avg === num) return true;
+    if (avg === num) return true;
 
-      avg < num ? left++ : right--;
-    }
+    avg < num ? left++ : right--;
+  }
 
-    return false;
+  return false;
 }
 ```
