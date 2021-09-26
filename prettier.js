@@ -1,20 +1,13 @@
-function findLongestSubstring(string) {
-  let longest = 0;
-  let start = 0;
-  let used = {};
+function collectOddValues(arr) {
+  let newArr = [];
 
-  for (let i = 0; i < string.length; i++) {
-    let char = string[i];
+  if (arr.length === 0) return newArr;
 
-    if (used[char]) {
-      start = Math.max(start, used[char]);
-    }
-
-    longest = Math.max(longest, i - start + 1);
-    used[char] = i + 1;
+  if (arr[0] & (2 !== 0)) {
+    newArr.push(arr[0]);
   }
 
-  console.log(used);
+  newArr = newArr.concat(collectOddValues(arr.slice(1)));
 
-  return longest;
+  return newArr;
 }
