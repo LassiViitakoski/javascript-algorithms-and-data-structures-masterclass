@@ -101,7 +101,7 @@
 ## Multiple Pointers
 
 - Creating pointers or values that correspond to an index or position and move towards the beginning, end or middle based on a certain condition.
-- Very efficient for solving problems vwith minimal space complexity as well.
+- Very efficient for solving problems with minimal space complexity as well.
 
 * An Example
   - Write a function called sumZero which accepts a sorted array of integers. The function should find the first pair where the sum is 0. Return an array that includes both values that to zero or undefined if a pair does not exist.
@@ -111,7 +111,7 @@
   - Time Complexity - O(n<sup>2</sup>)
   - Not good!
 
-* Good Solution
+* Good Solutionr
 
 ```javascript
   function sumZero(arr) {
