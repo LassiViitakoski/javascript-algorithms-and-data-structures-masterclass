@@ -1,5 +1,11 @@
-function fib(num) {
-  if (num <= 2) return 1;
+function collectStrings(obj) {
+  let newArr = [];
 
-  return fib(num - 1) + fib(num - 2);
+  for (let key in obj) {
+    obj[key] instanceof Object
+      ? (newArr = [...newArr, ...collectStrings(obj[key])])
+      : typeof obj[key] === 'string' && newArr.push(obj[key]);
+  }
+
+  return newArr;
 }
