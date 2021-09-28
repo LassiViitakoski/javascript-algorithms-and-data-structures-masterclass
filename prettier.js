@@ -1,14 +1,20 @@
-function binarySearch(arr, elem) {
-  let start = 0;
-  let end = arr.length - 1;
-  let middle = Math.floor((start + end) / 2);
+const bubbleSort = arr => {
+  const swap = (arr, idx1, idx2) => {
+    [arr[idx1], arr[idx2]] = [arr[idx2], arr[idx1]];
+  };
 
-  while (arr[middle] !== elem && start <= end) {
-    if (elem < arr[middle]) end = middle - 1;
-    if (elem > arr[middle]) start = middle + 1;
+  for (let i = arr.length - 1; i > 0; i--) {
+    let swapped = false;
 
-    middle = Math.floor((start + end) / 2);
+    for (let j = 0; j < i; j++) {
+      if (arr[j] > arr[j + 1]) {
+        swap(arr, j, j + 1);
+        swapped = true;
+      }
+    }
+
+    if (!swapped) break;
   }
 
-  return arr[middle] === elem ? middle : -1;
-}
+  return arr;
+};
