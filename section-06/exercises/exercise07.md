@@ -33,8 +33,6 @@ function findLongestSubstring(string) {
     used[char] = i + 1;
   }
 
-  console.log(used);
-
   return longest;
 }
 ```

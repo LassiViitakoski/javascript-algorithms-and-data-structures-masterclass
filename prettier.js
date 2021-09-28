@@ -1,11 +1,14 @@
-function collectStrings(obj) {
-  let newArr = [];
+function binarySearch(arr, elem) {
+  let start = 0;
+  let end = arr.length - 1;
+  let middle = Math.floor((start + end) / 2);
 
-  for (let key in obj) {
-    obj[key] instanceof Object
-      ? (newArr = [...newArr, ...collectStrings(obj[key])])
-      : typeof obj[key] === 'string' && newArr.push(obj[key]);
+  while (arr[middle] !== elem && start <= end) {
+    if (elem < arr[middle]) end = middle - 1;
+    if (elem > arr[middle]) start = middle + 1;
+
+    middle = Math.floor((start + end) / 2);
   }
 
-  return newArr;
+  return arr[middle] === elem ? middle : -1;
 }
