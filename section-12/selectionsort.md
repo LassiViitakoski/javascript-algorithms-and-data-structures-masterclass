@@ -10,7 +10,7 @@
 - If the "minimum is not the value (index) you initially began with, swap the two values
 - Repeat this with the next element until the array is sorted.
 
-- Solution
+- My Solution
 
 ```javascript
 const selectionSort = arr => {
