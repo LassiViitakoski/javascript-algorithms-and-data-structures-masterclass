@@ -20,3 +20,16 @@
 - The comparator function looks at pairs of element (a and b), determines their sort order based on the return value
   - If it returns a negative number, a should come before b
   - If it returns a positive number, a should come after b
+
+### Intro to "Crazier" Sorts
+
+### Why Learn This?
+
+- The sorting algorithms we've learner so far don't scale well
+- Try out bubble sort on an array of 100000 elements, it will take quite some time!
+
+### Faster Sorts
+
+- There is a family of sorting algorithms that can improve time complexity from O(n<sup>2</sup>) to O(n log n)
+- There's a tradeoff between efficiency and simplicity
+- The mroe efficient algorithms are much less simple, and generally take longer to understand
