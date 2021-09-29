@@ -36,4 +36,4 @@ const bubbleSort = arr => {
 
 ### When to use Bubble Sort?
 
-- Bubble Sort should be only used if we know that our data will be almost in correct order!
+- Bubble Sort is good if we know that our data will be almost in correct order!

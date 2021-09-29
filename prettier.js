@@ -1,19 +1,16 @@
-const bubbleSort = arr => {
+const selectionSort = arr => {
   const swap = (arr, idx1, idx2) => {
     [arr[idx1], arr[idx2]] = [arr[idx2], arr[idx1]];
   };
 
-  for (let i = arr.length - 1; i > 0; i--) {
-    let swapped = false;
+  for (let i = 0; i < arr.length; i++) {
+    let min = i;
 
-    for (let j = 0; j < i; j++) {
-      if (arr[j] > arr[j + 1]) {
-        swap(arr, j, j + 1);
-        swapped = true;
-      }
+    for (let j = i + 1; j < arr.length; j++) {
+      if (arr[j] < arr[min]) min = j;
     }
 
-    if (!swapped) break;
+    if (min !== i) swap(arr, i, min);
   }
 
   return arr;
