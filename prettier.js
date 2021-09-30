@@ -1,26 +1,35 @@
-const mergeSort = <T>(arr: T[]): T[] => {
-  if (arr.length <= 1) return arr;
+const radixSort = arr => {
+  for (k = 0; k < mostDigits(arr); k++) {
+    let buckets = Array.from({ length: 10 }, () => []);
 
-  const left = arr.slice(0, Math.floor(arr.length / 2));
-  const right = arr.slice(Math.floor(arr.length / 2));
+    for (let i = 0; i < arr.length; i++) {
+      const digit = getDigit(arr[i], k);
 
-  return merge < T > (mergeSort(left), mergeSort(right));
-};
+      buckets[digit].push(arr[i]);
+    }
 
-const merge = <T>(arr1: T[], arr2: T[]): T[] => {
-  let results: T[] = [];
-  let i = 0;
-  let j = 0;
-
-  while (i < arr1.length && arr2.length > j) {
-    if (arr2[j] > arr1[i]) results.push(arr1[i]);
-    if (arr2[j] <= arr1[i]) results.push(arr2[j]);
-
-    arr2[j] > arr1[i] ? i++ : j++;
+    arr = [].concat(...buckets);
   }
 
-  for (let k = i; k < arr1.length; k++) results.push(arr1[k]);
-  for (let k = j; k < arr2.length; k++) results.push(arr2[k]);
+  return arr;
+};
 
-  return results;
+const getDigit = (num, idx) => {
+  return Math.floor(Math.abs(num) / Math.pow(10, idx)) % 10;
+};
+
+const digitCount = num => {
+  if (num === 0) return 1;
+
+  return Math.floor(Math.log10(Math.abs(num))) + 1;
+};
+
+const mostDigits = arr => {
+  let maxDigits = 0;
+
+  for (let i = 0; i < arr.length; i++) {
+    maxDigits = Math.max(maxDigits, digitCount(arr[i]));
+  }
+
+  return maxDigits;
 };

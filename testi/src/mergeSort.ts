@@ -1,22 +1,36 @@
-interface FrequencyCounterProps {
-  [key: string]: number;
-}
+const radixSort = (arr: number[]) => {
+  for (let k = 0; k < mostDigits(arr); k++) {
+    let buckets = Array.from<number, number[]>({ length: 10 }, () => []);
 
-type Collection<T> = T[] | string;
+    for (let i = 0; i < arr.length; i++) {
+      const digit = getDigit(arr[i], k);
 
-const toFrequencyCounter = <T = void>(
-  data: Collection<T>
-): FrequencyCounterProps => {
-  let frequencyCounter = {} as FrequencyCounterProps;
+      buckets[digit].push(arr[i]);
+    }
 
-  for (let val of data) {
-    frequencyCounter[val as string] =
-      (frequencyCounter[val as string] || 0) + 1;
+    arr = [];
+    arr = arr.concat(...buckets);
   }
 
-  return frequencyCounter;
+  return arr;
 };
 
-console.log(toFrequencyCounter<number>([10, 20, 30, 20]));
-console.log(toFrequencyCounter('Lassi Viitakoski'));
-console.log(toFrequencyCounter(['10', 'll', 10, 'dsff', 'll']));
+const getDigit = (num: number, idx: number) => {
+  return Math.floor(Math.abs(num) / Math.pow(10, idx)) % 10;
+};
+
+const digitCount = (num: number) => {
+  if (num === 0) return 1;
+
+  return Math.floor(Math.log10(Math.abs(num))) + 1;
+};
+
+const mostDigits = (arr: number[]) => {
+  let maxDigits = 0;
+
+  for (let i = 0; i < arr.length; i++) {
+    maxDigits = Math.max(maxDigits, digitCount(arr[i]));
+  }
+
+  return maxDigits;
+};

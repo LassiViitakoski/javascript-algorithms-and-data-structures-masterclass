@@ -1,13 +1,29 @@
 "use strict";
-var toFrequencyCounter = function (data) {
-    var frequencyCounter = {};
-    for (var _i = 0, data_1 = data; _i < data_1.length; _i++) {
-        var val = data_1[_i];
-        frequencyCounter[val] =
-            (frequencyCounter[val] || 0) + 1;
+const radixSort = (arr) => {
+    for (let k = 0; k < mostDigits(arr); k++) {
+        let buckets = Array.from({ length: 10 }, () => []);
+        for (let i = 0; i < arr.length; i++) {
+            const digit = getDigit(arr[i], k);
+            buckets[digit].push(arr[i]);
+        }
+        arr = [];
+        arr = arr.concat(...buckets);
     }
-    return frequencyCounter;
+    return arr;
 };
-console.log(toFrequencyCounter([10, 20, 30, 20]));
-console.log(toFrequencyCounter('Lassi Viitakoski'));
-console.log(toFrequencyCounter(['10', 'll', 10, 'dsff', 'll']));
+const getDigit = (num, idx) => {
+    return Math.floor(Math.abs(num) / Math.pow(10, idx)) % 10;
+};
+const digitCount = (num) => {
+    if (num === 0)
+        return 1;
+    return Math.floor(Math.log10(Math.abs(num))) + 1;
+};
+const mostDigits = (arr) => {
+    let maxDigits = 0;
+    for (let i = 0; i < arr.length; i++) {
+        maxDigits = Math.max(maxDigits, digitCount(arr[i]));
+    }
+    return maxDigits;
+};
+console.log(radixSort([-20, -21, -30, -12, -300, -222522]));
