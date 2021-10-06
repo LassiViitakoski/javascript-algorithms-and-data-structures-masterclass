@@ -73,3 +73,5 @@ const pivot = (arr, start = 0, end = arr.length - 1) => {
 |Time Complexity (Best)|Time Complexity (Average)|Time Complexity (Worst)|Space Complexity
 |:-:|:-:|:-:|:-:|
 |O(n log n)|O(n log n)|O(n<sup>2</sup>)|O(n)|
+
+- Worst case happens if pivot we choose is biggest or smallest number of array

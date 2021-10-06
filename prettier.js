@@ -1,35 +1,138 @@
-const radixSort = arr => {
-  for (k = 0; k < mostDigits(arr); k++) {
-    let buckets = Array.from({ length: 10 }, () => []);
+class Node {
+  constructor(val) {
+    this.val = val;
+    this.next = null;
+  }
+}
 
-    for (let i = 0; i < arr.length; i++) {
-      const digit = getDigit(arr[i], k);
+class SinglyLinkedList {
+  constructor() {
+    this.head = null;
+    this.tail = null;
+    this.length = 0;
+  }
 
-      buckets[digit].push(arr[i]);
+  push(val) {
+    const newNode = new Node(val);
+
+    if (this.head) {
+      this.tail.next = newNode;
+      this.tail = newNode;
+    } else {
+      this.head = newNode;
+      this.tail = newNode;
     }
 
-    arr = [].concat(...buckets);
+    this.length++;
+    return this;
   }
 
-  return arr;
-};
+  pop() {
+    if (!this.head) return undefined;
 
-const getDigit = (num, idx) => {
-  return Math.floor(Math.abs(num) / Math.pow(10, idx)) % 10;
-};
+    let current = this.head;
+    let newTail = current;
 
-const digitCount = num => {
-  if (num === 0) return 1;
+    while (current.next) {
+      newTail = current;
+      current = current.next;
+    }
 
-  return Math.floor(Math.log10(Math.abs(num))) + 1;
-};
+    this.tail = newTail;
+    this.tail.next = null;
+    this.length--;
 
-const mostDigits = arr => {
-  let maxDigits = 0;
+    if (this.length === 0) {
+      this.head = null;
+      this.tail = null;
+    }
 
-  for (let i = 0; i < arr.length; i++) {
-    maxDigits = Math.max(maxDigits, digitCount(arr[i]));
+    return current;
   }
 
-  return maxDigits;
-};
+  unshift(val) {
+    let newNode = new Node(val);
+
+    newNode.next = this.head;
+
+    this.head = newNode;
+    this.length++;
+    if (!this.tail) this.tail = newNode;
+
+    return this.head;
+  }
+
+  shift() {
+    if (!this.head) return undefined;
+
+    const current = this.head;
+    this.head = current.next;
+    this.length--;
+
+    return current;
+  }
+
+  get(index) {
+    if (this.length <= index || index < 0) return null;
+
+    let current = this.head;
+    for (let i = 0; i < index; i++) current = current.next;
+
+    return current;
+  }
+
+  set(index, val) {
+    let targetNode = this.get(index);
+    if (targetNode) targetNode.val = val;
+
+    return targetNode ? true : false;
+  }
+
+  insert(index, val) {
+    if (this.length < index || index < 0) return false;
+    if (this.length === index) !!this.push(val);
+    if (index === 0) !!this.unshift(val);
+
+    const newNode = new Node(val);
+    const prevNode = this.get(index - 1);
+
+    newNode.next = prevNode.next;
+    prevNode.next = newNode;
+
+    this.length++;
+    return true;
+  }
+
+  remove(index) {
+    if (this.length <= index || index < 0) return undefined;
+    if (this.length - 1 === index) return this.pop();
+    if (index === 0) return this.shift();
+
+    const prevNode = this.get(index - 1);
+    const targetNode = prevNode.next;
+
+    prevNode.next = targetNode.next;
+
+    this.length--;
+    return targetNode;
+  }
+
+  reverse() {
+    let node = this.head;
+    let prev = null;
+    let next;
+
+    this.head = this.tail;
+    this.tail = node;
+
+    for (let i = 0; i < this.length; i++) {
+      next = node.next;
+      node.next = prev;
+
+      prev = node;
+      node = next;
+    }
+
+    return this;
+  }
+}
